@@ -2,30 +2,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
+
 
 public class Bullet extends Object implements Drawable,Movable{
 
 	private boolean isVisible = true;
-	
-	private double theta = 0.0;
-	
-	public Bullet(int x, int y,double t) {
-		super(x,y + 10);
-		theta = t;
-	}
 
 	public static String URL_IMAGE_PATH_BULLET = "res//ammo.png";
-	
-	
-	
+	public Bullet(int x, int y,int s) {
+		super(x,y + 10,s);
+		width = new ImageIcon(URL_IMAGE_PATH_BULLET).getImage().getWidth(null);
+		height = new ImageIcon(URL_IMAGE_PATH_BULLET).getImage().getHeight(null);
+	}	
 	
 	@Override
 	public void draw(Graphics g) {
 			move(null);
 			Graphics2D g2d = (Graphics2D)g;
-			g2d.rotate(theta);
 			super.draw(g2d, URL_IMAGE_PATH_BULLET);
-			g2d.rotate(-theta);
 	}
 	@Override
 	public void move(KeyEvent e) {
